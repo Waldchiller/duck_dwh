@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# DuckDB
+storage/*.duckdb
+storage/*.duckdb.wal
+
+# Data files
+landing/
+
+# dbt
+logs/
+target/
+dbt_packages/
