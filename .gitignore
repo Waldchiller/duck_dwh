@@ -15,6 +15,9 @@ storage/*.duckdb.wal
 # Data files
 landing/
 
+# Samples JSON
+sample_jsons/
+
 # dbt
 logs/
 target/
