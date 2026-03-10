@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_books
+    description: "Staged books data from Goodreads mystery/thriller/crime dataset. One row per book."
+    columns:
+      - name: book_id
+        description: "Goodreads unique book identifier. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: work_id
+        description: "Goodreads work identifier (groups editions of the same book)."
+      - name: title
+        description: "Full book title including series information."
+        tests:
+          - not_null
+      - name: title_without_series
+        description: "Book title without series name."
+      - name: isbn
+        description: "ISBN-10. May be null if not available."
+      - name: isbn13
+        description: "ISBN-13. May be null if not available."
+      - name: asin
+        description: "Amazon ASIN. May be null if not available."
+      - name: kindle_asin
+        description: "Kindle ASIN. May be null if not available."
+      - name: publication_date
+        description: "Publication date. If only year is available, defaults to January 1st. Null if no year available."
+      - name: description
+        description: "Book description/synopsis."
+      - name: format
+        description: "Physical format e.g. Hardcover, Paperback, ebook."
+      - name: num_pages
+        description: "Number of pages. May be null if not available."
+      - name: edition_information
+        description: "Edition details. May be null."
+      - name: publisher
+        description: "Publisher name. May be null."
+      - name: average_rating
+        description: "Average Goodreads rating (0-5)."
+        tests:
+          - not_null
+      - name: ratings_count
+        description: "Total number of ratings."
+        tests:
+          - not_null
+      - name: text_reviews_count
+        description: "Total number of text reviews."
+        tests:
+          - not_null
+      - name: is_ebook
+        description: "Whether the book is an ebook."
+        tests:
+          - not_null
+      - name: language_code
+        description: "Language code e.g. eng. May be null."
+      - name: country_code
+        description: "Country code e.g. US. May be null."
+      - name: image_url
+        description: "URL to book cover image."
+      - name: link
+        description: "Goodreads URL for the book."
