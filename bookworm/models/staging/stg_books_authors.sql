@@ -4,7 +4,7 @@ with source as (
 
 unnested as (
     select
-        book_id::varchar                            as book_id,
+        book_id::varchar                            as fk_book_id,
         unnest(authors).author_id::varchar          as author_id,
         nullif(trim(unnest(authors).role), '')      as role
     from source

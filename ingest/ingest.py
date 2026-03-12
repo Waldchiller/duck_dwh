@@ -19,7 +19,7 @@ con.execute("""
 TABLES = [
     {
         "name": "books",
-        "file": "landing/goodreads_books_mystery_thriller_crime.json",
+        "file": "landing/goodreads_books_mystery_thriller_crime.json"
     },
     {
         "name": "interactions",

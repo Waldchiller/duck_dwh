@@ -65,7 +65,7 @@ models:
   - name: stg_books_shelves
     description: "Unnested book shelves. One row per book per shelf."
     columns:
-      - name: book_id
+      - name: fk_book_id
         description: "Goodreads unique book identifier. Foreign key to stg_books."
         tests:
           - not_null
