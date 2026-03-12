@@ -81,7 +81,7 @@ models:
   - name: stg_books_authors
     description: "Unnested authors. One row per series_id and book_id."
     columns:
-      - name: book_id
+      - name: fk_book_id
         description: "Goodreads unique book identifier. Foreign key to stg_books."
         tests:
           - not_null
