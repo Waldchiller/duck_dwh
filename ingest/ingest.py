@@ -1,3 +1,9 @@
+# Full load script for the duck_dwh raw layer.
+# Reads all three Goodreads NDJSON files from landing/ and loads them into
+# the raw schema in bookworm.duckdb using CREATE OR REPLACE (idempotent).
+# Also maintains raw.ingest_log to track each run's outcome.
+# Run from project root: python ingest/ingest.py
+
 import duckdb
 from datetime import datetime
 

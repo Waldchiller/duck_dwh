@@ -1,3 +1,9 @@
+# CONCEPT — not used in production yet.
+# Intended for incremental daily loads where new JSON files arrive partitioned by date
+# under landing/<table>/YYYY-MM-DD/. Uses a delete-then-insert upsert pattern to make
+# repeated runs idempotent: existing rows for the same primary key are replaced.
+# Run from project root: python ingest/ingest_daily.py
+
 import duckdb
 from datetime import date
 
