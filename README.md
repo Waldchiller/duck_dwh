@@ -26,6 +26,24 @@ duck_dwh/
 └── landing/               # Raw JSON source files (gitignored)
 ```
 
+## Trade-off analysis
+### Ingestion Trade off
+I chose a simple ingestion script (create replace) to speed up time to POC. Downside it reruns the whole ds each time costs compute with more data on cloud platform.
+Alternatively you could instead implement a incremental load that merges data based on what files are new, watermarks using a date or cdc/cdf type logic (e.g. in deltalake select table_changes..)
+If data grows definately need to do some sort of incremental loads.
+ 
+### Orchestration Trade off
+For speedy POC and simplicity i used a bash sript (would be task scheduler on windows) works fine for POC, but doesent handle retries/errors.
+Alternative on cloud could be using DAGs with something like airflow to handle retries errors and dependencies from ingestion to kicking off dbt or e.g. fabric / databricks workflows.
+The "Orchestration" within duckdb from raw onwards is handled by dbt it runs necessary preceeding models.
+When using cdf for incremental loads for many tables it would probably be asier to use notebooks instead (more dynamic programming) to propagate data to the layers.
+Than use dbt just for final Transformations in Gold/Presentation. You could also do incremental load notebooks up to staging with load_timestamp and than use dbt incremental model based on load_timestamp...many options here.
+
+### Data Modelling
+Is handled by dbt pretty much no tradeoffs as far as i know. Especially for data marts / gold / presentation whatever you want to call it.
+
+
+
 ## Setup
 
 ### 1. Prerequisites
