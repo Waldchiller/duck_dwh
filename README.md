@@ -4,7 +4,7 @@ A local data warehouse built with DuckDB and dbt, using Goodreads mystery/thrill
 
 ## Architecture
 
-
+![ETL Pipeline](/diagrams/architecture_duckdb.drawio.png)
 
 ## Project Structure
 
