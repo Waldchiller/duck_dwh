@@ -19,6 +19,8 @@ duck_dwh/
 │   └── macros/
 ├── orchestrate/
 │   └── run.sh             # Runs ingest + dbt build
+├── queries/               # Ad-hoc SQL queries
+├── diagrams/              # Architecture diagrams
 ├── storage/
 │   └── bookworm.duckdb    # DuckDB database (gitignored)
 └── landing/               # Raw JSON source files (gitignored)
