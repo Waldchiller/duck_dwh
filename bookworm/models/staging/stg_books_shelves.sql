@@ -7,7 +7,7 @@ unnested as (
         book_id::varchar                        as fk_book_id,
         unnest(popular_shelves).name::varchar   as shelf_name,
         unnest(popular_shelves).count::int      as shelf_count
-    where 
+    from source
 )
 
 select * from unnested
