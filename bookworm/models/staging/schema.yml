@@ -61,3 +61,31 @@ models:
         description: "URL to book cover image."
       - name: link
         description: "Goodreads URL for the book."
+
+  - name: stg_books_shelves
+    description: "Unnested book shelves. One row per book per shelf."
+    columns:
+      - name: book_id
+        description: "Goodreads unique book identifier. Foreign key to stg_books."
+        tests:
+          - not_null
+      - name: shelf_name
+        description: "Name of the Goodreads shelf."
+        tests:
+          - not_null
+      - name: shelf_count
+        description: "Number of users who placed the book on this shelf."
+        tests:
+          - not_null
+  
+  - name: stg_books_authors
+    description: "Unnested authors. One row per series_id and book_id."
+    columns:
+      - name: book_id
+        description: "Goodreads unique book identifier. Foreign key to stg_books."
+        tests:
+          - not_null
+      - name: role
+        description: "Shows roles aossociated with that book (auhtor, translator etc.) role can be NULL."
+
+
