@@ -2,6 +2,49 @@
 
 A local data warehouse built with DuckDB and dbt, using Goodreads mystery/thriller/crime data.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Sources["Source Files (landing/)"]
+        J1[books.json]
+        J2[interactions.json]
+        J3[reviews.json]
+    end
+
+    subgraph Ingest["ingest/ (Python)"]
+        I1[ingest.py\nfull load]
+        I2[ingest_daily.py\ndaily upsert]
+        IL[ingest_log\nmetadata]
+    end
+
+    subgraph DB["bookworm.duckdb (DuckDB)"]
+        subgraph raw["schema: raw"]
+            R1[books]
+            R2[interactions]
+            R3[reviews]
+        end
+
+        subgraph staging["schema: staging (dbt views)"]
+            S1[stg_books]
+            S2[stg_books_shelves]
+            S3[stg_books_authors]
+        end
+
+        subgraph presentation["schema: presentation (dbt tables)"]
+            P1[...]
+        end
+    end
+
+    J1 & J2 & J3 --> I1
+    J1 & J2 & J3 --> I2
+    I1 & I2 --> raw
+    I1 & I2 --> IL
+    R1 --> S1 & S2 & S3
+    R2 & R3 --> staging
+    staging --> presentation
+```
+
 ## Project Structure
 
 ```
